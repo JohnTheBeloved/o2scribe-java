@@ -52,6 +52,7 @@ public class OAuth20ServiceImpl implements OAuthService
     request.addBodyParameter(OAuthConstants.CLIENT_SECRET, config.getApiSecret());
     request.addBodyParameter(OAuthConstants.CODE, verifier.getValue());
     request.addBodyParameter(OAuthConstants.REDIRECT_URI, config.getCallback());
+    if(api.hasGrantType()) request.addBodyParameter(OAuthConstants.GRANT_TYPE, api.getGrantType());
     if(config.hasScope()) request.addBodyParameter(OAuthConstants.SCOPE, config.getScope());
   }
 

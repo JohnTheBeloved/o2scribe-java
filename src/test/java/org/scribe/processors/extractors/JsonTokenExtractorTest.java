@@ -7,7 +7,7 @@ import org.scribe.model.*;
 
 public class JsonTokenExtractorTest
 {
-  private String response = "'{ \"access_token\":\"I0122HHJKLEM21F3WLPYHDKGKZULAUO4SGMV3ABKFTDT3T3X\"}'";
+  private String response = "{ \"access_token\":\"I0122HHJKLEM21F3WLPYHDKGKZULAUO4SGMV3ABKFTDT3T3X\"}";
   private JsonTokenExtractor extractor = new JsonTokenExtractor();
 
   @Test

@@ -43,6 +43,12 @@ public abstract class DefaultApi20 implements Api
     return Verb.GET;
   }
 
+  public boolean hasGrantType() { return false; }
+
+  public String getGrantType() {
+    throw new UnsupportedOperationException("NOt Supported");
+  }
+
   /**
    * Returns the encoding for the access token request (defaults to QUERY)
    *
