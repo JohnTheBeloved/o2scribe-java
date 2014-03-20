@@ -2,9 +2,15 @@ package org.scribe.builder.api;
 
 import org.scribe.builder.AuthUrlBuilder;
 import org.scribe.builder.authUrl.DefaultAuthUrlBuilder;
-import org.scribe.processors.extractors.*;
-import org.scribe.model.*;
+import org.scribe.model.OAuthConfig;
+import org.scribe.model.OAuthConstants;
+import org.scribe.processors.extractors.JsonTokenExtractor;
+import org.scribe.processors.extractors.TokenExtractor;
 
+
+/**
+ * The Foursquare Api Oauth2 provider implementation.
+ */
 public class Foursquare2Api extends DefaultApi20 {
   private static final String AUTHORIZATION_URL = "https://foursquare.com/oauth2/authenticate";
 

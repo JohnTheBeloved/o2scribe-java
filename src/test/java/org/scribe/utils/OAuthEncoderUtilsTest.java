@@ -6,14 +6,14 @@ import static org.junit.Assert.*;
 /**
  * @author: Pablo Fernandez
  */
-public class OAuthEncoderTest
+public class OAuthEncoderUtilsTest
 {
   @Test
   public void shouldPercentEncodeString()
   {
     String plain = "this is a test &^";
     String encoded = "this%20is%20a%20test%20%26%5E";
-    assertEquals(encoded, OAuthEncoder.encode(plain));
+    assertEquals(encoded, OAuthEncoderUtils.encode(plain));
   }
 
   @Test
@@ -21,7 +21,7 @@ public class OAuthEncoderTest
   {
     String encoded = "this+is+a+test+%26%5E";
     String plain = "this is a test &^";
-    assertEquals(plain, OAuthEncoder.decode(encoded));
+    assertEquals(plain, OAuthEncoderUtils.decode(encoded));
   }
 
   @Test
@@ -29,8 +29,8 @@ public class OAuthEncoderTest
   {
     String plain = "!*'();:@&=+$,/?#[]";
     String encoded = "%21%2A%27%28%29%3B%3A%40%26%3D%2B%24%2C%2F%3F%23%5B%5D";
-    assertEquals(encoded, OAuthEncoder.encode(plain));
-    assertEquals(plain, OAuthEncoder.decode(encoded));
+    assertEquals(encoded, OAuthEncoderUtils.encode(plain));
+    assertEquals(plain, OAuthEncoderUtils.decode(encoded));
   }
 
   @Test
@@ -38,21 +38,21 @@ public class OAuthEncoderTest
   {
     String plain = "abcde123456-._~";
     String encoded = plain;
-    assertEquals(encoded, OAuthEncoder.encode(plain));
+    assertEquals(encoded, OAuthEncoderUtils.encode(plain));
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void shouldThrowExceptionIfStringToEncodeIsNull()
   {
     String toEncode = null;
-    OAuthEncoder.encode(toEncode);
+    OAuthEncoderUtils.encode(toEncode);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void shouldThrowExceptionIfStringToDecodeIsNull()
   {
     String toDecode = null;
-    OAuthEncoder.decode(toDecode);
+    OAuthEncoderUtils.decode(toDecode);
   }
 
   @Test
@@ -64,7 +64,7 @@ public class OAuthEncoderTest
 
     for(int i = 0; i < sources.length; i++)
     {
-      Assert.assertEquals(encoded[i], OAuthEncoder.encode(sources[i]));
+      Assert.assertEquals(encoded[i], OAuthEncoderUtils.encode(sources[i]));
     }
   }
 }

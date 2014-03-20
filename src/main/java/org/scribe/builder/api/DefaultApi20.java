@@ -1,8 +1,12 @@
 package org.scribe.builder.api;
 
-import org.scribe.processors.extractors.*;
-import org.scribe.model.*;
-import org.scribe.oauth.*;
+import org.scribe.model.Encoding;
+import org.scribe.model.OAuthConfig;
+import org.scribe.model.Verb;
+import org.scribe.oauth.OAuth20ServiceImpl;
+import org.scribe.oauth.OAuthService;
+import org.scribe.processors.extractors.TokenExtractor;
+import org.scribe.processors.extractors.TokenExtractor20Impl;
 
 /**
  * Default implementation of the OAuth protocol, version 2.0 (draft 11)
@@ -20,26 +24,23 @@ import org.scribe.oauth.*;
  * @author Diego Silveira
  *
  */
-public abstract class DefaultApi20 implements Api
-{
+public abstract class DefaultApi20 implements Api {
 
   /**
    * Returns the access token extractor.
-   * 
+   *
    * @return access token extractor
    */
-  public TokenExtractor getAccessTokenExtractor()
-  {
+  public TokenExtractor getAccessTokenExtractor() {
     return new TokenExtractor20Impl();
   }
-	
+
   /**
-   * Returns the verb for the access token endpoint (defaults to GET)
-   * 
+   * Returns the verb for the access token endpoint (defaults to GET).
+   *
    * @return access token endpoint verb
    */
-  public Verb getAccessTokenVerb()
-  {
+  public Verb getAccessTokenVerb() {
     return Verb.GET;
   }
 
@@ -50,19 +51,19 @@ public abstract class DefaultApi20 implements Api
   }
 
   /**
-   * Returns the encoding for the access token request (defaults to QUERY)
+   * Returns the encoding for the access token request (defaults to QUERY).
    *
    * @return access token encoding type
    */
   public Encoding getAccessTokenEncoding() { return Encoding.QUERY; }
-	
+
   /**
    * Returns the URL that receives the access token requests.
-   * 
+   *
    * @return access token URL
    */
   public abstract String getAccessTokenEndpoint();
-	
+
   /**
    * Returns the URL where you should redirect your users to authenticate
    * your application.
@@ -76,9 +77,7 @@ public abstract class DefaultApi20 implements Api
   /**
    * {@inheritDoc}
    */
-  public OAuthService createService(OAuthConfig config)
-  {
+  public OAuthService createService(final OAuthConfig config) {
     return new OAuth20ServiceImpl(this, config);
   }
-
 }

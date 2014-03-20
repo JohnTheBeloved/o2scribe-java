@@ -8,11 +8,9 @@ import org.scribe.model.OAuthConstants;
 import org.scribe.model.Verb;
 import org.scribe.processors.extractors.JsonTokenExtractor;
 import org.scribe.processors.extractors.TokenExtractor;
-import org.scribe.processors.extractors.TokenExtractor20Impl;
-import org.scribe.utils.OAuthEncoder;
 
 /**
- *
+ * The Google+ Api Oauth2 provider implementation.
  */
 public class GooglePlus extends DefaultApi20 {
     private static final String AUTHORIZATION_URL = "https://accounts.google.com/o/oauth2/auth";
@@ -44,7 +42,7 @@ public class GooglePlus extends DefaultApi20 {
     }
 
     @Override
-    public String getAuthorizationUrl(OAuthConfig oAuthConfig, String state) {
+    public String getAuthorizationUrl(final OAuthConfig oAuthConfig, final String state) {
         AuthUrlBuilder builder = new DefaultAuthUrlBuilder();
 
         builder.setEndpoint(AUTHORIZATION_URL)

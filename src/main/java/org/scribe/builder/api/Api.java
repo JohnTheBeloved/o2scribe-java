@@ -1,19 +1,19 @@
 package org.scribe.builder.api;
 
-import org.scribe.model.*;
-import org.scribe.oauth.*;
+import org.scribe.model.OAuthConfig;
+import org.scribe.oauth.OAuthService;
 
 /**
- * Contains all the configuration needed to instantiate a valid {@link OAuthService}
- * 
+ * Contains all the configuration needed to instantiate a valid {@link OAuthService}.
+ *
  * @author Pablo Fernandez
  *
  */
-public interface Api
-{  
+public interface Api {
   /**
-   * Creates an {@link OAuthService}
+   * Creates an {@link OAuthService}.
    *
+   * @param config for this service
    * @return fully configured {@link OAuthService}
    */
   OAuthService createService(OAuthConfig config);

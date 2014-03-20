@@ -1,35 +1,36 @@
 package org.scribe.processors.resolvers;
 
-import org.scribe.exceptions.*;
+
+import org.scribe.exceptions.OAuthParametersMissingException;
 import org.scribe.http.OAuthRequest;
 import org.scribe.model.ParameterList;
-import org.scribe.utils.*;
+import org.scribe.utils.OAuthEncoderUtils;
+import org.scribe.utils.Preconditions;
+
 
 /**
- * Default implementation of {@link Resolver}. Conforms to OAuth 1.0a
- * 
+ * Default implementation of {@link Resolver}. Conforms to OAuth 1.0a.
+ *
  * @author Pablo Fernandez
  *
  */
-public class BaseStringResolverImpl implements Resolver
-{
-
+public class BaseStringResolverImpl implements Resolver {
+  /** Paramter string template. */
   private static final String AMPERSAND_SEPARATED_STRING = "%s&%s&%s";
 
   /**
    * {@inheritDoc}
    */
-  public String extract(OAuthRequest request)
-  {
+  @Override
+  public String extract(final OAuthRequest request) {
     checkPreconditions(request);
-    String verb = OAuthEncoder.encode(request.getVerb().name());
-    String url = OAuthEncoder.encode(request.getSanitizedUrl());
+    String verb = OAuthEncoderUtils.encode(request.getVerb().name());
+    String url = OAuthEncoderUtils.encode(request.getSanitizedUrl());
     String params = getSortedAndEncodedParams(request);
     return String.format(AMPERSAND_SEPARATED_STRING, verb, url, params);
   }
 
-  private String getSortedAndEncodedParams(OAuthRequest request)
-  {
+  private String getSortedAndEncodedParams(final OAuthRequest request) {
     ParameterList params = new ParameterList();
     params.addAll(request.getQueryStringParams());
     params.addAll(request.getBodyParams());
@@ -37,12 +38,10 @@ public class BaseStringResolverImpl implements Resolver
     return params.sort().asOauthBaseString();
   }
 
-  private void checkPreconditions(OAuthRequest request)
-  {
+  private void checkPreconditions(final OAuthRequest request) {
     Preconditions.checkNotNull(request, "Cannot extract base string from null object");
 
-    if (request.getOauthParameters() == null || request.getOauthParameters().size() <= 0)
-    {
+    if (request.getOauthParameters() == null || request.getOauthParameters().size() <= 0) {
       throw new OAuthParametersMissingException(request);
     }
   }

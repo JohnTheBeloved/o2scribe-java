@@ -2,8 +2,11 @@ package org.scribe.builder.api;
 
 import org.scribe.builder.AuthUrlBuilder;
 import org.scribe.builder.authUrl.DefaultAuthUrlBuilder;
-import org.scribe.processors.extractors.*;
-import org.scribe.model.*;
+import org.scribe.model.OAuthConfig;
+import org.scribe.model.OAuthConstants;
+import org.scribe.processors.extractors.JsonTokenExtractor;
+import org.scribe.processors.extractors.TokenExtractor;
+
 
 /**
  * Kaixin(http://www.kaixin001.com/) open platform api based on OAuth 2.0.

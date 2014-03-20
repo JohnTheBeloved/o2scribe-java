@@ -1,30 +1,27 @@
 package org.scribe.model;
 
-import org.scribe.utils.*;
+import org.scribe.utils.Preconditions;
 
 /**
  * Represents an OAuth verifier code.
- * 
+ *
  * @author Pablo Fernandez
  */
-public class Verifier
-{
+public class Verifier {
 
   private final String value;
 
   /**
    * Default constructor.
-   * 
-   * @param value verifier value
+   *
+   * @param inValue verifier value
    */
-  public Verifier(String value)
-  {
-    Preconditions.checkNotNull(value, "Must provide a valid string as verifier");
-    this.value = value;
+  public Verifier(final String inValue) {
+    Preconditions.checkNotNull(inValue, "Must provide a valid string as verifier");
+    this.value = inValue;
   }
 
-  public String getValue()
-  {
+  public String getValue() {
     return value;
   }
 }

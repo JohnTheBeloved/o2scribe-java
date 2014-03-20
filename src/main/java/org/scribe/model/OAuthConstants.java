@@ -1,4 +1,4 @@
-/* 
+/*
 Copyright 2010 Pablo Fernandez
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,13 +16,12 @@ limitations under the License.
 package org.scribe.model;
 
 /**
- * This class contains OAuth constants, used project-wide
- * 
+ * This class contains OAuth constants, used project-wide.
+ *
  * @author Pablo Fernandez
  */
-public class OAuthConstants
-{
-  private OAuthConstants(){}
+public final class OAuthConstants {
+  private OAuthConstants() { }
 
   public static final String TIMESTAMP = "oauth_timestamp";
   public static final String SIGNATURE = "oauth_signature";
@@ -43,5 +42,5 @@ public class OAuthConstants
   public static final String RESPONSE_TYPE = "response_type";
   public static final String CODE = "code";
   public static final String GRANT_TYPE = "grant_type";
-  
+
 }

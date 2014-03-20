@@ -2,8 +2,11 @@ package org.scribe.builder.api;
 
 import org.scribe.builder.AuthUrlBuilder;
 import org.scribe.builder.authUrl.DefaultAuthUrlBuilder;
-import org.scribe.model.*;
+import org.scribe.model.OAuthConfig;
 
+/**
+ * The Facebook Api Oauth2 provider implementation.
+ */
 public class FacebookApi extends DefaultApi20 {
   private static final String AUTHORIZE_URL = "https://www.facebook.com/dialog/oauth";
 

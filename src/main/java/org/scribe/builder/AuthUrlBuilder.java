@@ -46,7 +46,7 @@ public interface AuthUrlBuilder {
     AuthUrlBuilder setState(String state);
 
     /**
-     * Optional response type, has no default, if none is provided it will not be part of the url
+     * Optional response type, has no default, if none is provided it will not be part of the url.
      *
      * @param responseType format of the authorization response
      * @return builder instance

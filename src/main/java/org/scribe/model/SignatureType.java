@@ -1,7 +1,9 @@
 package org.scribe.model;
 
-public enum SignatureType
-{
+/**
+ * Enum to encapsulate the types/locations of the signatures in the request/response.
+ */
+public enum SignatureType {
   Header,
   QueryString
 }

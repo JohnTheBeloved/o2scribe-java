@@ -3,12 +3,11 @@ package org.scribe.exceptions;
 import org.scribe.http.OAuthRequest;
 
 /**
- * Specialized exception that represents a missing OAuth parameter. 
- * 
+ * Specialized exception that represents a missing OAuth parameter.
+ *
  * @author Pablo Fernandez
  */
-public class OAuthParametersMissingException extends OAuthException
-{
+public class OAuthParametersMissingException extends OAuthException {
 
   private static final long serialVersionUID = 1745308760111976671L;
   private static final String MSG = "Could not find oauth parameters in request: %s. "
@@ -16,11 +15,10 @@ public class OAuthParametersMissingException extends OAuthException
 
   /**
    * Default constructor.
-   * 
+   *
    * @param request OAuthRequest that caused the error
    */
-  public OAuthParametersMissingException(OAuthRequest request)
-  {
+  public OAuthParametersMissingException(final OAuthRequest request) {
     super(String.format(MSG, request));
   }
 }

@@ -2,8 +2,10 @@ package org.scribe.builder.api;
 
 import org.scribe.builder.AuthUrlBuilder;
 import org.scribe.builder.authUrl.DefaultAuthUrlBuilder;
-import org.scribe.processors.extractors.*;
-import org.scribe.model.*;
+import org.scribe.model.OAuthConfig;
+import org.scribe.model.OAuthConstants;
+import org.scribe.processors.extractors.JsonTokenExtractor;
+import org.scribe.processors.extractors.TokenExtractor;
 
 /**
  * Renren(http://www.renren.com/) OAuth 2.0 based api.
@@ -22,7 +24,7 @@ public class RenrenApi extends DefaultApi20 {
   }
 
   @Override
-  public String getAuthorizationUrl(OAuthConfig config, String state) {
+  public String getAuthorizationUrl(final OAuthConfig config, final String state) {
       AuthUrlBuilder builder = new DefaultAuthUrlBuilder();
 
       builder.setEndpoint(AUTHORIZE_URL)

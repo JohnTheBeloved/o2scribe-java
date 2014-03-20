@@ -2,8 +2,11 @@ package org.scribe.builder.api;
 
 import org.scribe.builder.AuthUrlBuilder;
 import org.scribe.builder.authUrl.DefaultAuthUrlBuilder;
-import org.scribe.processors.extractors.*;
-import org.scribe.model.*;
+import org.scribe.model.OAuthConfig;
+import org.scribe.model.OAuthConstants;
+import org.scribe.model.Verb;
+import org.scribe.processors.extractors.JsonTokenExtractor;
+import org.scribe.processors.extractors.TokenExtractor;
 
 /**
  * SinaWeibo OAuth 2.0 api.
@@ -12,8 +15,7 @@ public class SinaWeiboApi20 extends DefaultApi20 {
   private static final String AUTHORIZE_URL = "https://api.weibo.com/oauth2/authorize";
 
   @Override
-  public Verb getAccessTokenVerb()
-  {
+  public Verb getAccessTokenVerb() {
     return Verb.POST;
   }
 

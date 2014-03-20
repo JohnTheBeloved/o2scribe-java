@@ -1,10 +1,10 @@
 package org.scribe.model;
 
-import java.io.*;
+import java.io.OutputStream;
 
 /**
- * Parameter object that groups OAuth config values
- * 
+ * Parameter object that groups OAuth config values.
+ *
  * @author Pablo Fernandez
  */
 public class OAuthConfig {
@@ -14,42 +14,42 @@ public class OAuthConfig {
   private final SignatureType signatureType;
   private final String scope;
   private final OutputStream debugStream;
-  
-  public OAuthConfig(String key, String secret) {
+
+  public OAuthConfig(final String key, final String secret) {
     this(key, secret, null, null, null, null);
   }
 
-  public OAuthConfig(String key, String secret, String callback, SignatureType type, String scope, OutputStream stream) {
+  public OAuthConfig(final String key,
+                     final String secret,
+                     final String inCallback,
+                     final SignatureType type,
+                     final String inScope,
+                     final OutputStream stream) {
     this.apiKey = key;
     this.apiSecret = secret;
-    this.callback = callback;
+    this.callback = inCallback;
     this.signatureType = type;
-    this.scope = scope;
+    this.scope = inScope;
     this.debugStream = stream;
   }
 
-  public String getApiKey()
-  {
+  public String getApiKey() {
     return apiKey;
   }
 
-  public String getApiSecret()
-  {
+  public String getApiSecret() {
     return apiSecret;
   }
 
-  public String getCallback()
-  {
+  public String getCallback() {
     return callback;
   }
 
-  public SignatureType getSignatureType()
-  {
+  public SignatureType getSignatureType() {
     return signatureType;
   }
 
-  public String getScope()
-  {
+  public String getScope() {
     return scope;
   }
 
@@ -57,6 +57,7 @@ public class OAuthConfig {
     return scope != null;
   }
 
+  //CHECKSTYLE.OFF: FinalParameters
   public void log(String message) {
     if (debugStream != null) {
       message = message + "\n";
@@ -67,4 +68,5 @@ public class OAuthConfig {
       }
     }
   }
+  //CHECKSTYLE.ON: FinalParameters
 }

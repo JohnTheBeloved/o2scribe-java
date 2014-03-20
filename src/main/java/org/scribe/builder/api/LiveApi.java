@@ -2,20 +2,24 @@ package org.scribe.builder.api;
 
 import org.scribe.builder.AuthUrlBuilder;
 import org.scribe.builder.authUrl.DefaultAuthUrlBuilder;
-import org.scribe.processors.extractors.*;
-import org.scribe.model.*;
+import org.scribe.model.OAuthConfig;
+import org.scribe.model.OAuthConstants;
+import org.scribe.processors.extractors.JsonTokenExtractor;
+import org.scribe.processors.extractors.TokenExtractor;
 
+/**
+ * The LiveApi Oauth2 provider implementation.
+ */
 public class LiveApi extends DefaultApi20 {
-	private static final String AUTHORIZE_URL = "https://oauth.live.com/authorize";
+    private static final String AUTHORIZE_URL = "https://oauth.live.com/authorize";
 
-	@Override
-	public String getAccessTokenEndpoint()
-	{
-		return "https://oauth.live.com/token?grant_type=authorization_code";
-	}
+    @Override
+    public String getAccessTokenEndpoint() {
+        return "https://oauth.live.com/token?grant_type=authorization_code";
+    }
 
-	@Override
-	public String getAuthorizationUrl(OAuthConfig config, String state)	{
+    @Override
+    public String getAuthorizationUrl(final OAuthConfig config, final String state) {
         AuthUrlBuilder builder = new DefaultAuthUrlBuilder();
 
         builder.setEndpoint(AUTHORIZE_URL)
@@ -25,11 +29,10 @@ public class LiveApi extends DefaultApi20 {
                 .setState(state)
                 .setResponseType(OAuthConstants.CODE);
         return builder.build();
-	}
+    }
 
-	@Override
-	public TokenExtractor getAccessTokenExtractor()
-	{
-		return new JsonTokenExtractor();
-	}
+    @Override
+    public TokenExtractor getAccessTokenExtractor() {
+        return new JsonTokenExtractor();
+    }
 }
