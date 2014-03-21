@@ -3,12 +3,16 @@ package org.scribe.utils;
 import java.util.*;
 import org.junit.*;
 
+import org.scribe.BasePrivateConstructorTest;
+
 /**
  * @author: Pablo Fernandez
  */
-public class MapUtilsTest
+public class MapUtilsTest extends BasePrivateConstructorTest
 {
-
+    protected Class getClazz(){
+        return MapUtils.class;
+    }
   @Test
   public void shouldPrettyPrintMap()
   {

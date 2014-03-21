@@ -23,12 +23,12 @@ public class BaseStringExtractorTest
   @Before
   public void setup()
   {
-    request = ObjectMother.createSampleOAuthRequest();
-    requestPort80 = ObjectMother.createSampleOAuthRequestPort80();
-    requestPort80_2 = ObjectMother.createSampleOAuthRequestPort80_2();
-    requestPort8080 = ObjectMother.createSampleOAuthRequestPort8080();
-    requestPort443 = ObjectMother.createSampleOAuthRequestPort443();
-    requestPort443_2 = ObjectMother.createSampleOAuthRequestPort443_2();
+    request = RequestCreator.createSampleOAuthRequest();
+    requestPort80 = RequestCreator.createSampleOAuthRequestPort80();
+    requestPort80_2 = RequestCreator.createSampleOAuthRequestPort80_2();
+    requestPort8080 = RequestCreator.createSampleOAuthRequestPort8080();
+    requestPort443 = RequestCreator.createSampleOAuthRequestPort443();
+    requestPort443_2 = RequestCreator.createSampleOAuthRequestPort443_2();
     extractor = new BaseStringResolverImpl();
   }
 
@@ -39,7 +39,7 @@ public class BaseStringExtractorTest
     String baseString = extractor.extract(request);
     assertEquals(expected, baseString);
   }
-  
+
   @Test
   public void shouldExcludePort80()
   {
@@ -47,7 +47,7 @@ public class BaseStringExtractorTest
     String baseString = extractor.extract(requestPort80);
     assertEquals(expected, baseString);
   }
-  
+
   @Test
   public void shouldExcludePort80_2()
   {
@@ -55,7 +55,7 @@ public class BaseStringExtractorTest
     String baseString = extractor.extract(requestPort80_2);
     assertEquals(expected, baseString);
   }
-  
+
   @Test
   public void shouldIncludePort8080()
   {
@@ -71,7 +71,7 @@ public class BaseStringExtractorTest
     String baseString = extractor.extract(requestPort443);
     assertEquals(expected, baseString);
   }
-  
+
   @Test
   public void shouldExcludePort443_2()
   {
@@ -79,7 +79,7 @@ public class BaseStringExtractorTest
     String baseString = extractor.extract(requestPort443_2);
     assertEquals(expected, baseString);
   }
-  
+
   @Test(expected = IllegalArgumentException.class)
   public void shouldThrowExceptionIfRquestIsNull()
   {

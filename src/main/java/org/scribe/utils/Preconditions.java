@@ -4,6 +4,7 @@ import static org.apache.commons.lang.StringUtils.isNotBlank;
 
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang.StringUtils;
 import org.scribe.model.OAuthConstants;
 
 /**
@@ -40,7 +41,7 @@ public final class Preconditions {
    * @throws IllegalArgumentException if the string is null or empty
    */
   public static void checkEmptyString(final String string, final String errorMsg) {
-    check(string != null && !string.trim().equals(""), errorMsg);
+    check(StringUtils.isNotBlank(string), errorMsg);
   }
 
   /**

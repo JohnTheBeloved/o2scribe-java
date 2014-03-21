@@ -6,6 +6,7 @@ import org.junit.*;
 import org.scribe.builder.api.*;
 import org.scribe.model.*;
 import org.scribe.oauth.*;
+import org.scribe.processors.extractors.TokenExtractor;
 
 public class ServiceBuilderTest
 {
@@ -48,7 +49,7 @@ public class ServiceBuilderTest
   @Test(expected=IllegalArgumentException.class)
   public void shouldNotAcceptNullAsCallback()
   {
-    builder.provider(ApiMock.class).apiKey("key").apiSecret("secret").callback(null).build(); 
+    builder.provider(ApiMock.class).apiKey("key").apiSecret("secret").callback(null).build();
   }
 
   @Test
@@ -64,10 +65,45 @@ public class ServiceBuilderTest
   {
     public static OAuthConfig config;
 
-    public OAuthService createService(OAuthConfig config)
-    {
-      ApiMock.config = config;
-      return null;
-    }
+      public OAuthService createService(OAuthConfig config)
+      {
+          ApiMock.config = config;
+          return null;
+      }
+
+      @Override
+      public TokenExtractor getAccessTokenExtractor() {
+          return null;
+      }
+
+      @Override
+      public Verb getAccessTokenVerb() {
+          return null;
+      }
+
+      @Override
+      public boolean hasGrantType() {
+          return false;
+      }
+
+      @Override
+      public String getGrantType() {
+          return null;
+      }
+
+      @Override
+      public Encoding getAccessTokenEncoding() {
+          return null;
+      }
+
+      @Override
+      public String getAccessTokenEndpoint() {
+          return null;
+      }
+
+      @Override
+      public String getAuthorizationUrl(OAuthConfig config, String stateToken) {
+          return null;
+      }
   }
 }

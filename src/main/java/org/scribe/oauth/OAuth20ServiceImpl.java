@@ -1,8 +1,9 @@
 package org.scribe.oauth;
 
 
-import org.scribe.builder.api.DefaultApi20;
+import org.scribe.builder.api.Api;
 import org.scribe.http.OAuthRequest;
+import org.scribe.http.OAuthRequestFactory;
 import org.scribe.http.Response;
 import org.scribe.model.OAuthConfig;
 import org.scribe.model.OAuthConstants;
@@ -12,13 +13,12 @@ import org.scribe.model.Verifier;
 /**
  * {@inheritDoc}.
  *
- * This is the default OAuth2 implemetation
+ * This is the default OAuth2 implementation
  */
 public class OAuth20ServiceImpl implements OAuthService {
-  private static final String VERSION = "2.0";
-
-  private final DefaultApi20 api;
+  private final Api api;
   private final OAuthConfig config;
+  private final OAuthRequestFactory requestFactory;
 
   /**
    * Default constructor.
@@ -26,16 +26,18 @@ public class OAuth20ServiceImpl implements OAuthService {
    * @param inApi OAuth2.0 api information
    * @param inConfig OAuth 2.0 configuration param object
    */
-  public OAuth20ServiceImpl(final DefaultApi20 inApi, final OAuthConfig inConfig) {
+  public OAuth20ServiceImpl(final Api inApi, final OAuthConfig inConfig, final OAuthRequestFactory inRequestFactory) {
     this.api = inApi;
     this.config = inConfig;
+    this.requestFactory = inRequestFactory;
   }
 
   /**
    * {@inheritDoc}
    */
-  public Token getAccessToken(final Token requestToken, final Verifier verifier) {
-    OAuthRequest request = new OAuthRequest(api.getAccessTokenVerb(), api.getAccessTokenEndpoint());
+  @Override
+  public Token getAccessToken(final Verifier verifier) {
+    OAuthRequest request = requestFactory.createRequest(api.getAccessTokenVerb(), api.getAccessTokenEndpoint());
 
     switch (api.getAccessTokenEncoding()) {
       case QUERY:
@@ -78,13 +80,7 @@ public class OAuth20ServiceImpl implements OAuthService {
   /**
    * {@inheritDoc}
    */
-  public String getVersion() {
-    return VERSION;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
+  @Override
   public void signRequest(final Token accessToken, final OAuthRequest request) {
     request.addQuerystringParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
   }
@@ -92,6 +88,7 @@ public class OAuth20ServiceImpl implements OAuthService {
   /**
    * {@inheritDoc}
    */
+  @Override
   public String getAuthorizationUrl() {
     return getAuthorizationUrl(null);
   }
@@ -99,6 +96,7 @@ public class OAuth20ServiceImpl implements OAuthService {
   /**
    * {@inheritDoc}
    */
+  @Override
   public String getAuthorizationUrl(final String requestToken) {
     return api.getAuthorizationUrl(config, requestToken);
   }

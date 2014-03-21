@@ -2,6 +2,7 @@ package org.scribe.processors.resolvers;
 
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.scribe.exceptions.OAuthParametersMissingException;
 import org.scribe.http.OAuthRequest;
 import org.scribe.model.OAuthConstants;
@@ -35,7 +36,7 @@ public class HeaderResolverImpl implements Resolver {
       header.append(String.format("%s=\"%s\"", entry.getKey(), OAuthEncoderUtils.encode(entry.getValue())));
     }
 
-    if (request.getRealm() != null && !request.getRealm().isEmpty()) {
+    if (StringUtils.isNotBlank(request.getRealm())) {
       header.append(PARAM_SEPARATOR);
       header.append(String.format("%s=\"%s\"", OAuthConstants.REALM, request.getRealm()));
     }

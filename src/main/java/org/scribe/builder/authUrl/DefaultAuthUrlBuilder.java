@@ -25,7 +25,7 @@ public class DefaultAuthUrlBuilder implements AuthUrlBuilder {
 
     @Override
     public AuthUrlBuilder setEndpoint(final String inEndpoint) {
-        Preconditions.checkValidUrl(endpoint, "The endpoint should be a vaild url");
+        Preconditions.checkValidUrl(inEndpoint, "The endpoint should be a vaild url");
         this.endpoint = inEndpoint;
         return this;
     }
@@ -65,6 +65,9 @@ public class DefaultAuthUrlBuilder implements AuthUrlBuilder {
     @Override
     public String build() {
         StringBuilder sb = new StringBuilder();
+        Preconditions.checkValidUrl(endpoint, "A url endpoint is required.");
+        Preconditions.checkEmptyString(clientId, "Client It is required");
+
         sb.append(endpoint)
                 .append(INTIAL_PARAMETER_IDENTIFIER)
                 .append(OAuthConstants.CLIENT_ID)
@@ -87,6 +90,7 @@ public class DefaultAuthUrlBuilder implements AuthUrlBuilder {
     }
 
     protected void addParameter(final StringBuilder sb, final String paramName, final String paramValue) {
+        Preconditions.checkEmptyString(paramValue, paramName + " is required.");
         sb.append(PARAMETETER_IDENTIFIER)
                 .append(paramName)
                 .append(EQUALS)

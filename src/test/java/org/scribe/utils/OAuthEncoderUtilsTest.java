@@ -3,11 +3,17 @@ package org.scribe.utils;
 import org.junit.*;
 import static org.junit.Assert.*;
 
+import org.scribe.BasePrivateConstructorTest;
+
 /**
  * @author: Pablo Fernandez
  */
-public class OAuthEncoderUtilsTest
+public class OAuthEncoderUtilsTest  extends BasePrivateConstructorTest
 {
+    protected Class getClazz(){
+        return OAuthEncoderUtils.class;
+    }
+
   @Test
   public void shouldPercentEncodeString()
   {

@@ -1,5 +1,6 @@
 package org.scribe.builder.api;
 
+import org.scribe.http.OAuthRequestFactory;
 import org.scribe.model.Encoding;
 import org.scribe.model.OAuthConfig;
 import org.scribe.model.Verb;
@@ -31,6 +32,7 @@ public abstract class DefaultApi20 implements Api {
    *
    * @return access token extractor
    */
+  @Override
   public TokenExtractor getAccessTokenExtractor() {
     return new TokenExtractor20Impl();
   }
@@ -40,12 +42,15 @@ public abstract class DefaultApi20 implements Api {
    *
    * @return access token endpoint verb
    */
+  @Override
   public Verb getAccessTokenVerb() {
     return Verb.GET;
   }
 
+  @Override
   public boolean hasGrantType() { return false; }
 
+  @Override
   public String getGrantType() {
     throw new UnsupportedOperationException("NOt Supported");
   }
@@ -55,29 +60,13 @@ public abstract class DefaultApi20 implements Api {
    *
    * @return access token encoding type
    */
+  @Override
   public Encoding getAccessTokenEncoding() { return Encoding.QUERY; }
 
-  /**
-   * Returns the URL that receives the access token requests.
-   *
-   * @return access token URL
-   */
-  public abstract String getAccessTokenEndpoint();
-
-  /**
-   * Returns the URL where you should redirect your users to authenticate
-   * your application.
-   *
-   * @param config OAuth 2.0 configuration param object
-   * @param stateToken optional state token for protecting against csrf attacks
-   * @return the URL where you should redirect your users
-   */
-  public abstract String getAuthorizationUrl(OAuthConfig config, String stateToken);
-
-  /**
+    /**
    * {@inheritDoc}
    */
   public OAuthService createService(final OAuthConfig config) {
-    return new OAuth20ServiceImpl(this, config);
+    return new OAuth20ServiceImpl(this, config, new OAuthRequestFactory());
   }
 }

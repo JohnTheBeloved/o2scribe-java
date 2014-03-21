@@ -47,7 +47,7 @@ public class RenrenExample
 
     // Trade the Request Token and Verfier for the Access Token
     System.out.println("Trading the Request Token for an Access Token...");
-    Token accessToken = service.getAccessToken(EMPTY_TOKEN, verifier);
+    Token accessToken = service.getAccessToken(verifier);
     System.out.println("Got the Access Token!");
     System.out.println("(if your curious it looks like this: " + accessToken + " )");
     System.out.println();
