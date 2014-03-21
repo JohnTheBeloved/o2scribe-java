@@ -1,5 +1,6 @@
 package org.scribe.builder;
 
+import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 
 import java.lang.reflect.Modifier;
@@ -18,13 +19,17 @@ import org.apache.commons.validator.routines.UrlValidator;
 import org.reflections.Reflections;
 import org.scribe.builder.api.Api;
 import org.scribe.model.Encoding;
+import org.scribe.model.OAuthConfig;
 import org.scribe.model.Verb;
+import org.scribe.oauth.OAuthService;
+import org.scribe.processors.extractors.TokenExtractor;
 
 /**
  * Test for Api Implementations.
  */
 @RunWith(Parameterized.class)
 public class ApiContractTest {
+    private UrlValidator urlValidator = new UrlValidator(new String[]{"http","https"});
     private Api toTest;
 
     public ApiContractTest(Api impl, String name){
@@ -71,7 +76,30 @@ public class ApiContractTest {
     @Test
     public void isAccessTokenEndpointValidURL(){
         String result = toTest.getAccessTokenEndpoint();
-        UrlValidator urlValidator = new UrlValidator(new String[]{"http","https"});
+
         assertTrue("The access token endpoint breaches the provider Api, not a valid url", urlValidator.isValid(result));
+    }
+
+    @Test
+    public void createValidAuthorizationURL(){
+        OAuthConfig defaultConfig = new OAuthConfig("key", "secret", "http://www.example.com", null, null, null);
+        String authUrl = toTest.getAuthorizationUrl(defaultConfig, "state");
+
+        assertTrue("The access token endpoint breaches the provider Api contract, not a valid url", urlValidator.isValid(authUrl));
+    }
+
+    @Test
+    public void validAccessTokenExtractor(){
+        TokenExtractor extractor = toTest.getAccessTokenExtractor();
+
+        assertNotNull("The Token extractor breaches the provider api contract, must be implemented", extractor);
+    }
+
+    @Test
+    public void createService(){
+        OAuthConfig defaultConfig = new OAuthConfig("key", "secret", "http://www.example.com", null, null, null);
+        OAuthService service = toTest.createService(defaultConfig);
+
+        assertNotNull("Oauth Service cannot be null this breaches the Api contract", service);
     }
 }

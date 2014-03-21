@@ -53,7 +53,7 @@ public class DefaultAuthUrlBuilder implements AuthUrlBuilder {
     @Override
     public AuthUrlBuilder setState(final String inState) {
         this.state = inState;
-        return null;
+        return this;
     }
 
     @Override
