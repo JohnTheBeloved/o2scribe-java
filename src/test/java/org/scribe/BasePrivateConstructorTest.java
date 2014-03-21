@@ -14,6 +14,7 @@ import org.junit.Test;
 public abstract class BasePrivateConstructorTest {
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testConstructorIsPrivate() throws IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchMethodException {
         Constructor constructor = getClazz().getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
