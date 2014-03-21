@@ -1,2 +1,4 @@
 # kickstart travis.
 language: java
+jdk:
+  - oraclejdk7
