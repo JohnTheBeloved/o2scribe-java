@@ -9,9 +9,10 @@ and does not support oauth1 or oauth1a and has no intention of doing so in the f
 
 ## Submitting a new provider
 
-1. Your new provider needs to implement the [Api](src/main/java/org/scribe/builder/api/Api.java) Interface
+1. Your new provider needs to implement the [Api](src/main/java/org/scribe/builder/api/Api.java) Interface, most providers have common functionality
+and extend [DefaultApi20](src/main/java/org/scribe/builder/api/DefaultApi20.java)
 1. If your provider uses non standard parameters you will need to create a custom [AuthUrlBuilder](src/main/java/org/scribe/builder/AuthUrlBuilder.java)
-the [DefaultAuthUrlBuilder](src/main/java/org/scribe/builder/authUrl/DefaultAuthUrlBuilder.java) will probably be sufficient.
+the [DefaultAuthUrlBuilder](src/main/java/org/scribe/builder/authUrl/DefaultAuthUrlBuilder.java) will probably be sufficient for most providers.
 1. Add a new example under the examples package
-1. Ensure that [checkstyles](http://checkstyle.sourceforge.net/) and [findBugs](http://findbugs.sourceforge.net/) are both passing. These are baked into
+1. Ensure that [Checkstyles](http://checkstyle.sourceforge.net/) and [findBugs](http://findbugs.sourceforge.net/) are both passing. These are baked into
 the default maven build.
