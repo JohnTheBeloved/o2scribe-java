@@ -14,13 +14,11 @@ import org.scribe.model.Verb;
  */
 public class TestRequestFactory extends OAuthRequestFactory {
     private final Response mockResponse;
-    private IMocksControl control;
     private List<TestOAuthRequest> requests;
 
     public TestRequestFactory(IMocksControl control){
-        this.control = control;
         mockResponse = control.createMock(Response.class);
-        requests = new ArrayList<TestOAuthRequest>();
+        requests = new ArrayList<>();
     }
 
     @Override

@@ -41,7 +41,7 @@ public class ApiContractTest {
         Reflections reflections = new Reflections("org.scribe.builder.api");
         Set<Class<? extends Api>> allSubTypes = reflections.getSubTypesOf(Api.class);
 
-        List<Object[]> allConcreteSubTypes = new ArrayList<Object[]>();
+        List<Object[]> allConcreteSubTypes = new ArrayList<>();
         for (Class<? extends Api> candidate : allSubTypes) {
             if(!Modifier.isAbstract(candidate.getModifiers())){
                 allConcreteSubTypes.add(new Object[]{candidate.newInstance(), candidate.getSimpleName()});

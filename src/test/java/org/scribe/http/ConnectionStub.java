@@ -7,8 +7,8 @@ import java.util.*;
 public class ConnectionStub extends HttpURLConnection
 {
 
-  private Map<String, String> headers = new HashMap<String, String>();
-  private Map<String, List<String>> responseHeaders = new HashMap<String, List<String>>();
+  private Map<String, String> headers = new HashMap<>();
+  private Map<String, List<String>> responseHeaders = new HashMap<>();
   private int inputStreamCalled = 0;
 
   public ConnectionStub() throws Exception

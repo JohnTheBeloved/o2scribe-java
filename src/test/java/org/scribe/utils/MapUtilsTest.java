@@ -16,7 +16,7 @@ public class MapUtilsTest extends BasePrivateConstructorTest
   @Test
   public void shouldPrettyPrintMap()
   {
-    Map<Integer, String> map = new HashMap<Integer, String>();
+    Map<Integer, String> map = new HashMap<>();
     map.put(1, "one");
     map.put(2, "two");
     map.put(3, "three");
@@ -27,7 +27,7 @@ public class MapUtilsTest extends BasePrivateConstructorTest
   @Test
   public void shouldHandleEmptyMap()
   {
-    Map<Integer, String> map = new HashMap<Integer, String>();
+    Map<Integer, String> map = new HashMap<>();
     Assert.assertEquals("{}", MapUtils.toString(map));
   }
 

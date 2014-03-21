@@ -26,7 +26,7 @@ public class OAuthRequest extends Request {
    */
   public OAuthRequest(final Verb verb, final String url) {
     super(verb, url);
-    this.oauthParameters = new HashMap<String, String>();
+    this.oauthParameters = new HashMap<>();
   }
 
   /**

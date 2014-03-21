@@ -1,6 +1,5 @@
 package org.scribe.oauth;
 
-import org.easymock.IMocksControl;
 import org.scribe.http.OAuthRequest;
 import org.scribe.http.Response;
 import org.scribe.model.Verb;

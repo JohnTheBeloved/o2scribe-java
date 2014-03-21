@@ -50,7 +50,7 @@ public class Response {
   }
 
   private Map<String, String> parseHeaders(final HttpURLConnection conn) {
-    Map<String, String> localHeaders = new HashMap<String, String>();
+    Map<String, String> localHeaders = new HashMap<>();
     for (String key : conn.getHeaderFields().keySet()) {
         localHeaders.put(key, conn.getHeaderFields().get(key).get(0));
     }

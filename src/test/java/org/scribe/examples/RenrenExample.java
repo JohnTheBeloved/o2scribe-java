@@ -55,12 +55,12 @@ public class RenrenExample
     // Now let's go and ask for a protected resource!
     System.out.println("Now we're going to access a protected resource...");
     OAuthRequest request = new OAuthRequest(Verb.POST, PROTECTED_RESOURCE_URL);
-    Map<String, String> parameters = new HashMap<String, String>();
+    Map<String, String> parameters = new HashMap<>();
     parameters.put("method", "users.getInfo");
     parameters.put("format", "json");
     parameters.put("v", "1.0");
 
-    List<String> sigString = new ArrayList<String>(parameters.size() + 1);
+    List<String> sigString = new ArrayList<>(parameters.size() + 1);
     for (Map.Entry<String, String> entry : parameters.entrySet())
     {
       request.addQuerystringParameter(entry.getKey(), entry.getValue());
@@ -94,7 +94,7 @@ public class RenrenExample
     {
       java.security.MessageDigest md = MessageDigest.getInstance("MD5");
       byte[] array = md.digest(orgString.getBytes(Charset.forName("UTF-8")));
-      StringBuffer sb = new StringBuffer();
+      StringBuilder sb = new StringBuilder();
       for (int i = 0; i < array.length; ++i)
       {
         sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1, 3));

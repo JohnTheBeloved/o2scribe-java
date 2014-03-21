@@ -53,7 +53,7 @@ public class Request {
     this.url = inUrl;
     this.querystringParams = new ParameterList();
     this.bodyParams = new ParameterList();
-    this.headers = new HashMap<String, String>();
+    this.headers = new HashMap<>();
     this.charset = Charset.defaultCharset().name();
   }
 

@@ -19,11 +19,11 @@ public class ParameterList {
   private final List<Parameter> params;
 
   public ParameterList() {
-    params = new ArrayList<Parameter>();
+    params = new ArrayList<>();
   }
 
   ParameterList(final List<Parameter> inParams) {
-    this.params = new ArrayList<Parameter>(inParams);
+    this.params = new ArrayList<>(inParams);
   }
 
   public ParameterList(final Map<String, String> map) {

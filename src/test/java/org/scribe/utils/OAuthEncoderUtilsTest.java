@@ -43,8 +43,7 @@ public class OAuthEncoderUtilsTest  extends BasePrivateConstructorTest
   public void shouldNotPercentEncodeReservedCharacters()
   {
     String plain = "abcde123456-._~";
-    String encoded = plain;
-    assertEquals(encoded, OAuthEncoderUtils.encode(plain));
+    assertEquals(plain, OAuthEncoderUtils.encode(plain));
   }
 
   @Test(expected = IllegalArgumentException.class)
