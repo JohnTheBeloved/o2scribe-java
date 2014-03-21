@@ -9,6 +9,7 @@
 
 	<properties>
 		<project.config.dir>${project.basedir}/src/main/config</project.config.dir>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
   <dependencies>
