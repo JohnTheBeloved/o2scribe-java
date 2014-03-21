@@ -22,10 +22,10 @@ public class OAuthRequestTest
   @Test
   public void shouldAddOAuthParamters()
   {
-    request.addOAuthParameter(OAuthConstants.TOKEN, "token");
-    request.addOAuthParameter(OAuthConstants.NONCE, "nonce");
-    request.addOAuthParameter(OAuthConstants.TIMESTAMP, "ts");
-    request.addOAuthParameter(OAuthConstants.SCOPE, "feeds");
+    request.addOAuthParameter(OAuthConstants.TOKEN.getParamName(), "token");
+    request.addOAuthParameter(OAuthConstants.NONCE.getParamName(), "nonce");
+    request.addOAuthParameter(OAuthConstants.TIMESTAMP.getParamName(), "ts");
+    request.addOAuthParameter(OAuthConstants.SCOPE.getParamName(), "feeds");
 
     assertEquals(4, request.getOauthParameters().size());
   }

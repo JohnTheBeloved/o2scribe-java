@@ -42,11 +42,11 @@ public class OAuthRequest extends Request {
   }
 
   private String checkKey(final String key) {
-    if (key.startsWith(OAUTH_PREFIX) || key.equals(OAuthConstants.SCOPE)) {
+    if (key.startsWith(OAUTH_PREFIX) || key.equals(OAuthConstants.SCOPE.getParamName())) {
       return key;
     } else {
       throw new IllegalArgumentException(String.format("OAuth parameters must either be '%s' or start with '%s'",
-              OAuthConstants.SCOPE, OAUTH_PREFIX));
+              OAuthConstants.SCOPE.getParamName(), OAUTH_PREFIX));
     }
   }
 

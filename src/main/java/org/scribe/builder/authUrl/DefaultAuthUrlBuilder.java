@@ -70,15 +70,15 @@ public class DefaultAuthUrlBuilder implements AuthUrlBuilder {
 
         sb.append(endpoint)
                 .append(INTIAL_PARAMETER_IDENTIFIER)
-                .append(OAuthConstants.CLIENT_ID)
+                .append(OAuthConstants.CLIENT_ID.getParamName())
                 .append(EQUALS)
                 .append(clientId);
 
-        addParameter(sb, OAuthConstants.REDIRECT_URI, OAuthEncoderUtils.encode(redirectUrl));
+        addParameter(sb, OAuthConstants.REDIRECT_URI.getParamName(), OAuthEncoderUtils.encode(redirectUrl));
 
-        addOptionalParameter(sb, OAuthConstants.SCOPE, scope);
-        addOptionalParameter(sb, OAuthConstants.STATE, state);
-        addOptionalParameter(sb, OAuthConstants.RESPONSE_TYPE, responseType);
+        addOptionalParameter(sb, OAuthConstants.SCOPE.getParamName(), scope);
+        addOptionalParameter(sb, OAuthConstants.STATE.getParamName(), state);
+        addOptionalParameter(sb, OAuthConstants.RESPONSE_TYPE.getParamName(), responseType);
 
         return sb.toString();
     }

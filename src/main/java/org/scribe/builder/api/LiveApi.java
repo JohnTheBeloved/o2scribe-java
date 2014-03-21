@@ -27,7 +27,7 @@ public class LiveApi extends DefaultApi20 {
                 .setRedirectUrl(config.getCallback())
                 .setScope(config.getScope())
                 .setState(state)
-                .setResponseType(OAuthConstants.CODE);
+                .setResponseType(OAuthConstants.CODE.getParamName());
         return builder.build();
     }
 

@@ -38,7 +38,7 @@ public class HeaderResolverImpl implements Resolver {
 
     if (StringUtils.isNotBlank(request.getRealm())) {
       header.append(PARAM_SEPARATOR);
-      header.append(String.format("%s=\"%s\"", OAuthConstants.REALM, request.getRealm()));
+      header.append(String.format("%s=\"%s\"", OAuthConstants.REALM.getParamName(), request.getRealm()));
     }
 
     return header.toString();

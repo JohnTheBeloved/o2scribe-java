@@ -74,7 +74,7 @@ public class OAuthServiceTest {
 
         oauthService.signRequest(token, request);
         assertTrue("Does not contain the parameter", request.getQueryStringParams().contains(
-                new Parameter(OAuthConstants.ACCESS_TOKEN, token.getToken())));
+                new Parameter(OAuthConstants.ACCESS_TOKEN.getParamName(), token.getToken())));
     }
 
     @Test

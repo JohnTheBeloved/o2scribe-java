@@ -63,7 +63,7 @@ public final class Preconditions {
    */
   public static void checkValidOAuthCallback(final String url, final String errorMsg) {
     checkEmptyString(url, errorMsg);
-    if (url.compareToIgnoreCase(OAuthConstants.OUT_OF_BAND) != 0) {
+    if (url.compareToIgnoreCase(OAuthConstants.OUT_OF_BAND.getParamName()) != 0) {
       check(isUrl(url), errorMsg);
     }
   }

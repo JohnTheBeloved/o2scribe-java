@@ -50,7 +50,7 @@ public class GooglePlus extends DefaultApi20 {
                 .setRedirectUrl(oAuthConfig.getCallback())
                 .setScope(oAuthConfig.getScope())
                 .setState(state)
-                .setResponseType(OAuthConstants.CODE);
+                .setResponseType(OAuthConstants.CODE.getParamName());
         return builder.build();
     }
 }

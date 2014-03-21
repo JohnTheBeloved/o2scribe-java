@@ -55,25 +55,25 @@ public class OAuth20ServiceImpl implements OAuthService {
   }
 
   private void encodeInBody(final Verifier verifier, final OAuthRequest request) {
-    request.addBodyParameter(OAuthConstants.CLIENT_ID, config.getApiKey());
-    request.addBodyParameter(OAuthConstants.CLIENT_SECRET, config.getApiSecret());
-    request.addBodyParameter(OAuthConstants.CODE, verifier.getValue());
-    request.addBodyParameter(OAuthConstants.REDIRECT_URI, config.getCallback());
+    request.addBodyParameter(OAuthConstants.CLIENT_ID.getParamName(), config.getApiKey());
+    request.addBodyParameter(OAuthConstants.CLIENT_SECRET.getParamName(), config.getApiSecret());
+    request.addBodyParameter(OAuthConstants.CODE.getParamName(), verifier.getValue());
+    request.addBodyParameter(OAuthConstants.REDIRECT_URI.getParamName(), config.getCallback());
     if (api.hasGrantType()) {
-        request.addBodyParameter(OAuthConstants.GRANT_TYPE, api.getGrantType());
+        request.addBodyParameter(OAuthConstants.GRANT_TYPE.getParamName(), api.getGrantType());
     }
     if (config.hasScope()) {
-        request.addBodyParameter(OAuthConstants.SCOPE, config.getScope());
+        request.addBodyParameter(OAuthConstants.SCOPE.getParamName(), config.getScope());
     }
   }
 
   private void encodeInUrl(final Verifier verifier, final OAuthRequest request) {
-      request.addQuerystringParameter(OAuthConstants.CLIENT_ID, config.getApiKey());
-      request.addQuerystringParameter(OAuthConstants.CLIENT_SECRET, config.getApiSecret());
-      request.addQuerystringParameter(OAuthConstants.CODE, verifier.getValue());
-      request.addQuerystringParameter(OAuthConstants.REDIRECT_URI, config.getCallback());
+      request.addQuerystringParameter(OAuthConstants.CLIENT_ID.getParamName(), config.getApiKey());
+      request.addQuerystringParameter(OAuthConstants.CLIENT_SECRET.getParamName(), config.getApiSecret());
+      request.addQuerystringParameter(OAuthConstants.CODE.getParamName(), verifier.getValue());
+      request.addQuerystringParameter(OAuthConstants.REDIRECT_URI.getParamName(), config.getCallback());
       if (config.hasScope()) {
-          request.addQuerystringParameter(OAuthConstants.SCOPE, config.getScope());
+          request.addQuerystringParameter(OAuthConstants.SCOPE.getParamName(), config.getScope());
       }
   }
 
@@ -82,7 +82,7 @@ public class OAuth20ServiceImpl implements OAuthService {
    */
   @Override
   public void signRequest(final Token accessToken, final OAuthRequest request) {
-    request.addQuerystringParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
+    request.addQuerystringParameter(OAuthConstants.ACCESS_TOKEN.getParamName(), accessToken.getToken());
   }
 
   /**

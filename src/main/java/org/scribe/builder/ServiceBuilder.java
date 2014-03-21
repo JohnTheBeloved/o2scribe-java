@@ -30,7 +30,7 @@ public class ServiceBuilder {
    * Default constructor.
    */
   public ServiceBuilder() {
-    this.callback = OAuthConstants.OUT_OF_BAND;
+    this.callback = OAuthConstants.OUT_OF_BAND.getParamName();
     this.signatureType = SignatureType.Header;
     this.debugStream = null;
   }

@@ -20,27 +20,35 @@ package org.scribe.model;
  *
  * @author Pablo Fernandez
  */
-public final class OAuthConstants {
-  private OAuthConstants() { }
+public enum OAuthConstants {
+    TIMESTAMP("oauth_timestamp"),
+    SIGNATURE("oauth_signature"),
+    CONSUMER_KEY("oauth_consumer_key"),
+    CALLBACK("oauth_callback"),
+    NONCE("oauth_nonce"),
+    REALM("realm"),
+    TOKEN("oauth_token"),
+    OUT_OF_BAND("oob"),
+    SCOPE("scope"),
 
-  public static final String TIMESTAMP = "oauth_timestamp";
-  public static final String SIGNATURE = "oauth_signature";
-  public static final String CONSUMER_KEY = "oauth_consumer_key";
-  public static final String CALLBACK = "oauth_callback";
-  public static final String NONCE = "oauth_nonce";
-  public static final String REALM = "realm";
-  public static final String TOKEN = "oauth_token";
-  public static final String OUT_OF_BAND = "oob";
-  public static final String SCOPE = "scope";
+    //OAuth 2.0
+    ACCESS_TOKEN("access_token"),
+    CLIENT_ID("client_id"),
+    CLIENT_SECRET("client_secret"),
+    REDIRECT_URI("redirect_uri"),
+    STATE("state"),
+    RESPONSE_TYPE("response_type"),
+    CODE("code"),
+    GRANT_TYPE("grant_type");
 
-  //OAuth 2.0
-  public static final String ACCESS_TOKEN = "access_token";
-  public static final String CLIENT_ID = "client_id";
-  public static final String CLIENT_SECRET = "client_secret";
-  public static final String REDIRECT_URI = "redirect_uri";
-  public static final String STATE = "state";
-  public static final String RESPONSE_TYPE = "response_type";
-  public static final String CODE = "code";
-  public static final String GRANT_TYPE = "grant_type";
+    private String paramName;
 
+    private OAuthConstants(final String inParamName) {
+
+        this.paramName = inParamName;
+    }
+
+    public String getParamName() {
+        return paramName;
+    }
 }
