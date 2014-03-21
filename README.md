@@ -7,3 +7,11 @@ This project started life as a fork of [scribe-java](https://github.com/fernande
 the project has discontinued oauth2 support. This project aims to pick up where they left off. It is not intentionally compatible with scribe
 and does not support oauth1 or oauth1a and has no intention of doing so in the future.
 
+## Submitting a new provider
+
+1. Your new provider needs to implement the [Api](src/main/java/org/scribe/builder/api/Api.java) Interface
+1. If your provider uses non standard parameters you will need to create a custom [AuthUrlBuilder](src/main/java/org/scribe/builder/AuthUrlBuilder.java)
+the [DefaultAuthUrlBuilder](src/main/java/org/scribe/builder/authUrl/DefaultAuthUrlBuilder.java) will probably be sufficient.
+1. Add a new example under the examples package
+1. Ensure that [checkstyles](http://checkstyle.sourceforge.net/) and [findBugs](http://findbugs.sourceforge.net/) are both passing. These are baked into
+the default maven build.
