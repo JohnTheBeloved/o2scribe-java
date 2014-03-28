@@ -34,13 +34,6 @@ public class RequestTest
     assertEquals("GET", connection.getRequestMethod());
   }
 
-    @Test
-    public void shouldCreateConnectionifNotSet() {
-        connection = null;
-        getRequest = new Request(Verb.GET, "http://localhost/");
-        getRequest.send();
-    }
-
     @Test(expected = OAuthConnectionException.class)
     public void shouldFailIfInvalidURL() {
         connection = null;
