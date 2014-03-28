@@ -9,7 +9,7 @@ import org.scribe.processors.extractors.JsonTokenExtractor;
 import org.scribe.processors.extractors.TokenExtractor;
 
 /**
- * Copyright (c) Elastic Path Software Inc., 2014.
+ *
  */
 public class GitHub extends DefaultApi20 {
     private static final String AUTHORIZE_URL = "https://github.com/login/oauth/authorize";
