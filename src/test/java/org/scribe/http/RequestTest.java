@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
+import org.scribe.exceptions.OAuthConnectionException;
+import org.scribe.exceptions.OAuthException;
 import org.scribe.model.Parameter;
 import org.scribe.model.Verb;
 
@@ -32,6 +34,20 @@ public class RequestTest
     assertEquals("GET", connection.getRequestMethod());
   }
 
+    @Test
+    public void shouldCreateConnectionifNotSet() {
+        connection = null;
+        getRequest = new Request(Verb.GET, "http://localhost/");
+        getRequest.send();
+    }
+
+    @Test(expected = OAuthConnectionException.class)
+    public void shouldFailIfInvalidURL() {
+        connection = null;
+        getRequest = new Request(Verb.GET, "httpoo://localhost::/sada??s");
+        getRequest.send();
+    }
+
   @Test
   public void shouldGetQueryStringParameters()
   {
@@ -39,6 +55,12 @@ public class RequestTest
     assertEquals(0, postRequest.getQueryStringParams().size());
     assertTrue(getRequest.getQueryStringParams().contains(new Parameter("qsparam", "value")));
   }
+
+    @Test(expected = OAuthException.class)
+    public void shouldGetQueryStringParametersFailsIfURLInvalid() {
+        getRequest = new Request(Verb.GET, "httpoo://localhost::/sada??s");
+        getRequest.getQueryStringParams().size();
+    }
 
   @Test
   public void shouldAddRequestHeaders()

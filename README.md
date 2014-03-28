@@ -16,3 +16,8 @@ the [DefaultAuthUrlBuilder](src/main/java/org/scribe/builder/authUrl/DefaultAuth
 1. Add a new example under the examples package
 1. Ensure that [Checkstyles](http://checkstyle.sourceforge.net/) and [findBugs](http://findbugs.sourceforge.net/) are both passing. These are baked into
 the default maven build.
+
+## What, no....
+
+* Twitter - they only offer a 1.0a authentication service, please take a look at [scribe-java](https://github.com/fernandezpablo85/scribe-java) for support
+
